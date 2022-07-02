@@ -1,12 +1,18 @@
 package com.zipcodewilmington.person;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Created by leon on 2/12/18.
  */
 public class TestPerson {
+    Person fullPerson;
+    @Before
+    public void init() {
+        fullPerson = new Person("Jane", 35, 160, 130, true);
+    }
     @Test
     public void testDefaultConstructor() {
         // Given
@@ -67,6 +73,28 @@ public class TestPerson {
         Assert.assertEquals(expectedAge, actualAge);
         Assert.assertEquals(expectedName, actualName);
     }
+    @Test
+    public void testFullConstructor() {
+        Integer expectedAge = 35;
+        String expectedName = "Anny";
+        Integer expectedHeight = 160;
+        Integer expectedWeight = 120;
+        boolean expectedMarital = true;
+
+        Person person = new Person(expectedName, expectedAge, expectedHeight, expectedWeight, expectedMarital);
+
+        Integer actualAge =  person.getAge();
+        String actualName = person.getName();
+        Integer actualHeight = person.getHeight();
+        Integer actualWeight = person.getWeight();
+        boolean actualMarital = person.getMarital();
+
+        Assert.assertEquals(expectedName, actualName);
+        Assert.assertEquals(expectedAge, actualAge);
+        Assert.assertEquals(expectedHeight, actualHeight);
+        Assert.assertEquals(expectedWeight, actualWeight);
+        Assert.assertEquals(expectedMarital, actualMarital);
+    }
 
     @Test
     public void testSetName() {
@@ -95,4 +123,63 @@ public class TestPerson {
         Integer actual = person.getAge();
         Assert.assertEquals(expected, actual);
     }
+    @Test
+    public void testSetIsMarried() {
+        // Given
+        Person person = new Person();
+        person.setMarital(true);
+
+        boolean actual = person.getMarital();
+
+        Assert.assertEquals(true, actual);
+    }
+
+    @Test
+    public void testGetIsMarried() {
+        boolean expected = true;
+
+        boolean actual = fullPerson.getMarital();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetHeight() {
+        int expected = 160;
+
+        int actual = fullPerson.getHeight();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetHeight() {
+        int expected = 180;
+        fullPerson.setHeightCm(180);
+
+        int actual = fullPerson.getHeight();
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testGetWeight(){
+        int expected = 130;
+
+        int actual = fullPerson.getWeight();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetWeight() {
+        int expected = 155;
+        fullPerson.setWeight(155);
+
+        int actual = fullPerson.getWeight();
+
+        Assert.assertEquals(expected, actual);
+    }
+
 }
